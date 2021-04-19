@@ -13,16 +13,16 @@ class Tag(models.Model):
 
 
 class Training(models.Model):
-    question = models.ManyToManyField('Question')
+    question = models.ManyToManyField('Question', related_name='trainings')
 
 
 class Question(models.Model):
     content = models.TextField()
-    training = models.ForeignKey(Training, on_delete=models.CASCADE)
+    training = models.ForeignKey('Training', on_delete=models.CASCADE, related_name='question_to_training')
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='answers')
     content = models.TextField()
     correct = models.BooleanField(default=False)
 

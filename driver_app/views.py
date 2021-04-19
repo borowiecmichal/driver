@@ -10,3 +10,7 @@ class AdviceAPIView(generics.ListCreateAPIView):
     queryset = Advice.objects.all().order_by('?')
     serializer_class = AdviceSerializer
 
+class AdviceDetailsAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Advice.objects.all()
+    serializer_class = AdviceSerializer
+

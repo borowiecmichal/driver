@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework import generics
 
-# Create your views here.
+from driver_app.models import Advice
+from driver_app.serializers import AdviceSerializer
+
+
+class AdviceAPIView(generics.ListCreateAPIView):
+    queryset = Advice.objects.all().order_by('?')
+    serializer_class = AdviceSerializer
+

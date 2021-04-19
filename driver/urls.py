@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from driver_app.views import AdviceAPIView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('advices/', AdviceAPIView.as_view(), name='advices')
 ]

@@ -16,9 +16,8 @@ class AdviceSerializer(serializers.HyperlinkedModelSerializer):
         model = Advice
         fields = '__all__'
 
-    tags = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Tag.objects.all(), view_name='tag-detail')
-
-
+    tags = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Tag.objects.all(),
+                                               view_name='tag-detail')
 
 
 class TrainingSerializer(serializers.HyperlinkedModelSerializer):

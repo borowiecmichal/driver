@@ -21,5 +21,5 @@ from driver_app.views import AdviceAPIView, AdviceDetailsAPIView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('advices/', AdviceAPIView.as_view(), name='advices'),
-    path('advices/<int:pk>', AdviceDetailsAPIView.as_view(), name='advice-detail'),
+    path('advice/<int:pk>', AdviceDetailsAPIView.as_view(), name='advice-detail'),
 ]

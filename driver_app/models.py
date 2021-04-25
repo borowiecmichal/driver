@@ -23,6 +23,9 @@ class Question(models.Model):
     content = models.TextField()
     training = models.ForeignKey('Training', on_delete=models.CASCADE, related_name='question_to_training')
 
+    def __str__(self):
+        return self.content
+
 
 class Answer(models.Model):
     question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='answers')

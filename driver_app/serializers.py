@@ -25,6 +25,10 @@ class TrainingSerializer(serializers.HyperlinkedModelSerializer):
         model = Training
         fields = '__all__'
 
+    advice_set = serializers.HyperlinkedRelatedField(many=True, queryset=Advice.objects.all(), view_name='advice-detail')
+    question = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Question.objects.all(),
+                                                   view_name='question-detail')
+
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

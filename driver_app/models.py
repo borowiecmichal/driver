@@ -31,3 +31,7 @@ class Answer(models.Model):
     question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='answers')
     content = models.TextField()
     correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.content
+

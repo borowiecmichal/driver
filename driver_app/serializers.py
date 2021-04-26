@@ -8,6 +8,8 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
         fields = '__all__'
 
+    advice_set = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='advices')
+
 
 class AdviceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -44,3 +46,4 @@ class AnswerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Answer
         fields = '__all__'
+

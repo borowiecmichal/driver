@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
-from driver_app.models import Advice, Answer, Question, Training
-from driver_app.serializers import AdviceSerializer, AnswerSerializer, QuestionSerializer, TrainingSerializer
+from driver_app.models import Advice, Answer, Question, Training, Tag
+from driver_app.serializers import AdviceSerializer, AnswerSerializer, QuestionSerializer, TrainingSerializer, \
+    TagSerializer
 
 
 class AdviceAPIView(generics.ListCreateAPIView):
@@ -44,3 +45,8 @@ class TrainingAPIView(generics.ListCreateAPIView):
 class TrainingDetailsAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Training.objects.all()
     serializer_class = TrainingSerializer
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer

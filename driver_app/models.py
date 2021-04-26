@@ -3,7 +3,7 @@ from django.db import models
 
 class Advice(models.Model):
     title = models.CharField(max_length=128)
-    photo_movie = models.FileField(upload_to='driver_app/uploads')
+    photo_movie = models.FileField(upload_to='driver_app/uploads', blank=True)
     tags = models.ManyToManyField('Tag')
     training = models.ForeignKey('Training', on_delete=models.SET_NULL, null=True, blank=True)
 

@@ -36,11 +36,13 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
         model = Question
         fields = '__all__'
 
-    answers = serializers.StringRelatedField( many=True,)
-                                                  # view_name='answer-detail')
+    answers = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Answer.objects.all(),
+                                                  view_name='answer-detail')
 
 
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = Answer
         fields = '__all__'

@@ -31,15 +31,6 @@ class TrainingSerializer(serializers.HyperlinkedModelSerializer):
                                                    view_name='question-detail')
 
 
-class QuestionSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Question
-        fields = '__all__'
-
-    answers = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Answer.objects.all(),
-                                                  view_name='answer-detail')
-
-
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.PrimaryKeyRelatedField(read_only=True)
 
@@ -47,3 +38,10 @@ class AnswerSerializer(serializers.HyperlinkedModelSerializer):
         model = Answer
         fields = '__all__'
 
+
+class QuestionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+    answers = AnswerSerializer(many=True)

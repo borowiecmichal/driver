@@ -71,4 +71,9 @@ class CheckTraining(APIView):
         correct_answers = []
         for q in questions:
             print(q.answers.all())
+        ###
+           # TO DO:
+           #  check correct_answers
+           #  sign user to list who accomplished
+        ###
         return Response({}, status=200)

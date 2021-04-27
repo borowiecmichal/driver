@@ -18,7 +18,7 @@ class Tag(models.Model):
 
 
 class Training(models.Model):
-    question = models.ManyToManyField('Question', related_name='trainings')
+    pass
 
 
 class Question(models.Model):

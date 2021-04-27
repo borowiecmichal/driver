@@ -20,7 +20,6 @@ class AdviceSerializer(serializers.HyperlinkedModelSerializer):
                                                view_name='tag-detail')
 
 
-
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.PrimaryKeyRelatedField(read_only=True)
 
@@ -45,7 +44,6 @@ class TrainingSerializer(serializers.HyperlinkedModelSerializer):
     advice_set = serializers.HyperlinkedRelatedField(many=True, queryset=Advice.objects.all(),
                                                      view_name='advice-detail')
 
-    question = QuestionSerializer(many=True, required=False)
+    question_to_training = QuestionSerializer(many=True, required=False)
     # question = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Question.objects.all(),
     #                                                view_name='question-detail')
-

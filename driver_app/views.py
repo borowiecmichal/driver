@@ -1,5 +1,9 @@
+import json
+
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics, viewsets
 
@@ -56,3 +60,15 @@ class TagViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class CheckTraining(APIView):
+    @csrf_exempt  # TEMPORARY
+    def post(self, request):
+        print(request.data)
+        t = Training.objects.get(pk=request.data['training-id'])
+        questions = t.question_to_training.all()
+        correct_answers = []
+        for q in questions:
+            print(q.answers.all())
+        return Response({}, status=200)

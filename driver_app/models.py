@@ -7,7 +7,7 @@ class Advice(models.Model):
     photo_movie = models.FileField(upload_to='driver_app/uploads', blank=True)
     tags = models.ManyToManyField('Tag')
     training = models.ForeignKey('Training', on_delete=models.SET_NULL, null=True, blank=True)
-    users_passed_advice = models.ManyToManyField(User, )
+    users_passed_advice = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.title

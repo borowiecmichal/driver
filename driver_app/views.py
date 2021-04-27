@@ -1,10 +1,11 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import generics, viewsets
 
 from driver_app.models import Advice, Answer, Question, Training, Tag
 from driver_app.serializers import AdviceSerializer, AnswerSerializer, QuestionSerializer, TrainingSerializer, \
-    TagSerializer
+    TagSerializer, UserSerializer
 
 
 class AdviceAPIView(generics.ListCreateAPIView):
@@ -50,3 +51,8 @@ class TrainingDetailsAPIView(generics.RetrieveUpdateDestroyAPIView):
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

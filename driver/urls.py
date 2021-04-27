@@ -18,10 +18,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from driver_app.views import AdviceAPIView, AdviceDetailsAPIView, AnswerAPIView, AnswerDetailsAPIView, QuestionAPIView, \
-    QuestionDetailsAPIView, TrainingAPIView, TrainingDetailsAPIView, TagViewSet
+    QuestionDetailsAPIView, TrainingAPIView, TrainingDetailsAPIView, TagViewSet, UserViewSet
 
 router = DefaultRouter()
 router.register(r'tags', TagViewSet)
+router.register(r'user', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from driver_app.models import Answer, Question, Training, Advice, Tag
@@ -18,6 +19,7 @@ class AdviceSerializer(serializers.HyperlinkedModelSerializer):
 
     tags = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Tag.objects.all(),
                                                view_name='tag-detail')
+    users_passed_advice = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name='user-detail')
 
 
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
@@ -44,6 +46,12 @@ class TrainingSerializer(serializers.HyperlinkedModelSerializer):
     advice_set = serializers.HyperlinkedRelatedField(many=True, queryset=Advice.objects.all(),
                                                      view_name='advice-detail')
 
-    question_to_training = QuestionSerializer(many=True, required=False)
+    question_to_training = QuestionSerializer(many=True, required=False, read_only=True)
     # question = serializers.HyperlinkedRelatedField(allow_empty=True, many=True, queryset=Question.objects.all(),
     #                                                view_name='question-detail')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'

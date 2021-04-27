@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -6,6 +7,7 @@ class Advice(models.Model):
     photo_movie = models.FileField(upload_to='driver_app/uploads', blank=True)
     tags = models.ManyToManyField('Tag')
     training = models.ForeignKey('Training', on_delete=models.SET_NULL, null=True, blank=True)
+    users_passed_advice = models.ManyToManyField(User, )
 
     def __str__(self):
         return self.title
@@ -28,7 +30,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='answers', blank=True)
     content = models.TextField()
     correct = models.BooleanField(default=False)
 

@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, status
 
 from driver_app.models import Advice, Answer, Question, Training, Tag
 from driver_app.serializers import AdviceSerializer, AnswerSerializer, QuestionSerializer, TrainingSerializer, \
@@ -71,9 +71,9 @@ class CheckTraining(APIView):
         correct_answers = []
         for q in questions:
             print(q.answers.all())
-        ###
+            ###
            # TO DO:
            #  check correct_answers
            #  sign user to list who accomplished
         ###
-        return Response({}, status=200)
+        return Response({}, status=status.HTTP_200_OK)

@@ -70,10 +70,13 @@ class CheckTraining(APIView):
         questions = t.question_to_training.all()
         correct_answers = []
         for q in questions:
-            print(q.answers.all())
+            correct_answers.append(q.answers.filter(correct=True).first().pk)
+
             ###
            # TO DO:
            #  check correct_answers
            #  sign user to list who accomplished
         ###
+        print(correct_answers)
+        print(request.data['answers'])
         return Response({}, status=status.HTTP_200_OK)

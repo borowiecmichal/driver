@@ -84,6 +84,5 @@ class CheckTraining(APIView):
 
         resp_dict['score'] = correct_counter
         resp_dict['possible_score'] = len(correct_answers)
-        print(correct_answers)
-        print(request.data['answers'])
+
         return Response(resp_dict, status=status.HTTP_200_OK)

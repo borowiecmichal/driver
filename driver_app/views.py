@@ -69,14 +69,21 @@ class CheckTraining(APIView):
         t = Training.objects.get(pk=request.data['training-id'])
         questions = t.question_to_training.all()
         correct_answers = []
+        resp_dict = {}
         for q in questions:
             correct_answers.append(q.answers.filter(correct=True).first().pk)
 
+        correct_counter = 0
+        for answer_id in request.data['answers']:
+            if answer_id in correct_answers:
+                correct_counter += 1
             ###
-           # TO DO:
-           #  check correct_answers
-           #  sign user to list who accomplished
+        # TO DO:
+        #  sign user to list who accomplished
         ###
+
+        resp_dict['score'] = correct_counter
+        resp_dict['possible_score'] = len(correct_answers)
         print(correct_answers)
         print(request.data['answers'])
-        return Response({}, status=status.HTTP_200_OK)
+        return Response(resp_dict, status=status.HTTP_200_OK)
